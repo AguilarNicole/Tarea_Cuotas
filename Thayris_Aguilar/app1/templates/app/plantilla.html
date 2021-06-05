@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block container %}
+
+<!--emmet: meta lenguaje-->
+<div class="row">
+    <!--formulario-->
+    <div class="col-3">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="monto">Monto</label>
+                <input type="number" name="monto" id="monto" class="form-control" required autofocus>
+            </div>
+
+            <div class="mb-3">
+                <label for="tasa">Tasa</label>
+                <input type="number" name="tasa" id="tasa" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="plazo">Plazo</label>
+                <input type="number" name="plazo" id="plazo" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" class="btn btn-success" value="Calcular">
+            </div>
+        </form>
+    </div>
+    <!--Datos-->
+    <div class="col-9">
+        <h2 >Calculo de Prestamos</h2>
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Monto</th>
+                    <th>Tasa</th>
+                    <th>Plazo</th>
+                    <th>Cuotas</th>
+                    <th>Total a Pagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in datos %}
+
+                <tr>
+                    <td>{{ d.monto }}</td>
+                    <td>{{ d.tasa }}</td>
+                    <td>{{ d.plazo }}</td>
+                    <td>{{ d.cuotas }}</td>
+                    <td>{{ d.totalPagar }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
